@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>个人简历</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/app.css">
+
+
+</head>
+<body>
+<!-- 导航条 -->
+
+<!-- 返回顶部 -->
+<div class="back-box">
+	<div class="back-btn">
+	</div>
+</div>
+
+<!-- 联系我们 -->
+<div class="qq">
+	<div class="qq-auto">
+		<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=591134058&site=qq&menu=yes">
+			<img src="image/qq.png" width="30px" height="30px" alt="能和我聊聊天吗？" title="能和我聊聊天吗？">
+		</a>
+
+	</div>
+</div>
+
+<!-- 第一页 -->
+<div class="onepage floor" id="onepage">
+	<button class="han-box">
+		<div class="han-btn"></div> <!-- 汉堡按钮 -->
+	</button>	
+	<div class="nav">
+	 <ul>
+	 	<li class="nav-on"><a href="javascript:;">个人介绍</a></li>
+	 	<li><a href="javascript:;">日常作品</a></li>
+	 	<li><a href="javascript:;">擅长技术</a></li>
+	 	<li><a href="javascript:;">个人经历</a></li>
+	 </ul>
+	</div>
+	<div class="center">
+		<div class="photo">
+
+		</div>
+			<div class="written">
+			<h1>赵恒旭</h1>
+			<h3>前端开发</h3>
+			<h5>故事不曲折怎么叫人成长</h5>  
+			<h5><a href="#">m15583730895@163.com</a></h5>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- 第二页 -->
+<div class="twopage floor" id="twopage">
+	<div class="center">
+		<h1>日常作品</h1>
+	</div>
+
+<!-- 日常作品三列布局 -->
+	<div class="work-demo">
+		<div class="work-left">
+				<a href="indexVue.html">
+				<img src="image/vuejs.png" alt="" width="80" height="80" style="display:block">
+				Vue ToDoList</a>
+		</div>
+
+		<div class="work-mid">
+			<a href="movemouse.html">
+			<img src="image/vuejs.png" alt="" width="80" height="80" style="display:block">
+			鼠标跟随</a>
+		</div>
+
+		<div class="work-right">
+			<a href="Carousel/Carousel.html">
+			<img src="image/vuejs.png" alt="" width="80" height="80" style="display:block">
+			轮播效果</a>
+		</div>
+
+	</div>
+</div>
+
+
+<!-- 第三页 -->
+<div class="threepage floor" id="threepage">
+	<div class="center">
+		<h1>擅长技术</h1>
+		<div class="tag">
+			<span>HTML5</span>
+			<span>CSS3</span>
+		</div>
+		<div class="tag">
+			<span>Javascript</span>
+			<span>Jquery与Bootstrap</span>
+			
+			
+		</div>
+		<div class="tag">
+			<span>Vue.js</span>
+			<span>网页设计</span>
+			<span>UI设计</span>
+		</div>												
+	</div>
+</div>
+
+<!-- 第四页 -->
+<div class="twopage floor" id="twopage">
+	<div class="center">
+		<h1>个人经历</h1>
+	</div>
+
+</div>
+<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+<script>
+$(function()
+{
+
+	// 返回顶点
+	var back = $('.back-box');
+	back.click(function(){
+		$('html,body').animate({scrollTop:0},'slow');
+		navLi.slideDown();
+	})
+
+
+	var navLi = $('.nav li');
+	// 汉堡按钮事件
+	$("button").click(function(){
+		navLi.slideDown();
+	})
+	$(".nav>ul>li").click(function(){
+		navLi.slideUp();
+	})
+
+	// 点击事件	
+	navLi.click(function()
+	{	
+	// $(this)指定点击的节点
+		var	$this = $(this);		
+		$this.each(function()
+		{
+			for(let i=0; i<4; i++)
+			{								
+				navLi.removeClass("nav-on");
+			}
+			$this.addClass('nav-on');
+			$('html,body').animate({scrollTop:$this.index()*960});
+		})
+	})
+	// 滚动条事件
+	$(window).scroll(function()
+	{
+
+
+			$('.floor').each(function(index)
+			{		
+				var $this = $(this),
+				curTop = $this.offset().top,
+				top = $('body,html').scrollTop();
+				if(top >= curTop && top <= curTop+960)
+				{
+					for(let i=0;i<4;i++)
+					{
+						navLi.removeClass('nav-on');
+					}
+					navLi.eq(index).addClass('nav-on');				
+				}			
+			})					
+		
+	})
+	
+
+
+})
+</script>
+</body>
+</html>

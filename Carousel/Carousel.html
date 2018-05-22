@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>轮播图</title>
+	<meta charset="utf-8">
+</head>
+<style type="text/css">
+	*{
+		padding: 0;
+		margin: 0;
+	}
+	.main{
+		width: 3360px;
+		height: 250px;
+		list-style: none;
+		position: relative;
+
+	}
+
+.main ul li{
+	float: left;
+	list-style: none;
+}
+
+
+	.wrap{
+		width: 840px;
+		height: 250px;
+		margin: 100px auto;
+		position: relative;
+        overflow: hidden;
+		
+
+	}
+	.pre{
+		width: 100px;
+		height: 250px;
+		font-size: 60px;
+		z-index: 9;
+		color: white;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		background-color: gray;
+		opacity: 0;
+		line-height: 250px;
+		text-align: center;
+		cursor: pointer;
+
+	}
+
+	.next{
+		width: 100px;
+		height: 250px;
+		font-size: 60px;
+		z-index: 9;
+		color: white;
+		position: absolute;
+		top: 0px;
+		left: 740px;
+		background-color: gray;
+		opacity: 0;
+		line-height: 250px;
+		text-align: center;
+		cursor: pointer;
+
+	}	
+    #poInt{
+        width:104px;
+        height:10px;
+        position:absolute;
+        top:220px;
+        left:370px;
+        z-index:9;
+    }
+
+    #poInt div{
+        width:10px;
+        height:10px;
+        border-radius:10px;
+        background-color:black;
+        display:inline-block;
+
+        z-index:10;
+        margin:0 5px;
+
+        
+    }
+
+  #poInt  .active{
+       background-color:orange;  
+    }
+
+</style>
+<body>
+	<div class="wrap" id="wrap">
+		<div class="pre" id="pre"><</div>
+		<div class="next" id="next">></div>
+		<div class="main" id="Carousel">
+			<ul id="ul">
+				<li ><img src="images/1.jpg" width="840" height="250"></li>
+				<li ><img src="images/2.jpg"  width="840" height="250"></li>
+				<li ><img src="images/3.jpg"  width="840" height="250"></li>
+				<li ><img src="images/4.jpg"  width="840" height="250"></li>
+			</ul>		
+		</div>
+        <div id="poInt">
+            <div class="active"></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+	</div>
+	<script type="text/javascript">
+	window.onload = function()
+{
+	function start()
+	{	
+			var pre = document.getElementById('pre'),
+                wrap = document.getElementById('wrap'),
+			    next = document.getElementById('next'),
+    			 Car = document.getElementById('Carousel'),
+    			 ul = document.getElementById('ul'),
+    			 oli = ul.getElementsByTagName('li'),
+    			 j = 0,
+                 ipoint = document.getElementById('poInt'),
+                 odiv = ipoint.getElementsByTagName('div'),
+                 time = setInterval(autoMove,5000);
+	
+
+
+
+
+
+			pre.onmouseover = function()
+			{
+				startMove(this,"opacity",85);
+			}
+
+			pre.onmouseout = function()
+            {
+			
+				startMove(this,"opacity",0);
+			}
+
+			next.onmouseover = function(){
+			
+			startMove(this,"opacity",85);
+			}
+
+			next.onmouseout = function(){
+			
+				startMove(this,"opacity",0);
+			}	
+
+
+
+
+             //point事件处理
+             for(let i=0;i<odiv.length;i++)
+             {
+                odiv[i].onclick = function()
+                {
+                    for(let j=0; j<odiv.length;j++)
+                    {
+                        odiv[j].className = "";
+                    }
+                    this.className = "active";
+                    startMove(Car,"right",840*i);
+                }
+             }
+
+            //点击切换 考虑到特殊 具有相对性 尽量少些属性控制 通过记事本 对比来看
+					next.onclick = function()
+					{		
+						if(j==3)
+						{
+							startMove(Car,"right",0);
+                            j=0;
+                                for(let i=0; i<odiv.length;i++)
+                                {
+                                   odiv[i].className = "";
+                                }                          
+                            odiv[j].className = "active";
+
+						}
+						else
+						{  
+							j++;
+                            startMove(Car,"right",840*j);
+
+                            for(let i=0; i<odiv.length;i++)
+                           {
+                               odiv[i].className = "";
+                            }
+                        odiv[j].className = "active";
+						}	
+					}
+				
+					pre.onclick = function()
+					{     
+                        
+                        if (j==0) 
+                        {
+                            startMove(Car,"right",2520);
+                            j=3;
+                                for(let i=0; i<odiv.length;i++)
+                                {
+                                   odiv[i].className = "";
+                                }                          
+                            odiv[j].className = "active";
+                            
+                        }
+					    else
+                       {    
+                            j--;
+                            startMove(Car,"right",840*j);
+                         for(let i=0; i<odiv.length;i++)
+                         {
+                             odiv[i].className = "";
+                         }
+                        odiv[j].className = "active";                              
+                       }
+					}
+
+                    wrap.onmouseover = function()
+                    {
+                        clearInterval(time);
+                    }
+                    wrap.onmouseout = function()
+                    {
+                        clearInterval(time);
+                       time = setInterval(autoMove,5000);
+                    }
+
+
+				
+
+        //自动播放函数
+		function autoMove()
+        {                                     
+            if(j==3)
+            {
+             j=0;
+             tab();
+            }
+            else
+            {
+            j++;
+            tab();     
+            } 
+        }
+       
+        function tab()
+            {
+                for(let i=0;i<4;i++)
+                {
+                    odiv[i].className = "";
+                }
+            startMove(Car,"right",840*j);
+            odiv[j].className = "active";
+            }
+
+          
+	//获取任意在样式表中的css
+		function getStyle(obj,name)
+		{
+			if (obj.currentStyle) 
+			{
+				return obj.currentStyle[name];
+			}
+			else
+			{
+				return getComputedStyle(obj,false)[name];
+			}
+		}
+
+
+		function startMove(obj,attr,iTarget)
+			{
+			clearInterval(obj.timer);
+			obj.timer = setInterval(function(){
+				
+				//parseInt()会自动舍去小数
+				if(attr == 'opacity')
+				{
+					var changeAttr = parseFloat(getStyle(obj,attr))*100,
+						speed = (iTarget - changeAttr)/10;	 
+				}
+				else
+				{
+					var changeAttr = parseInt(getStyle(obj,attr)),
+						speed = (iTarget - changeAttr)/10;			
+				}
+
+				
+				speed = speed>0?Math.ceil(speed):Math.floor(speed);
+
+				if(changeAttr == iTarget)
+				{
+					clearInterval(obj.timer);
+				}
+				else
+				{	
+					if(attr == 'opacity')
+					{	
+						obj.style.filter = 'alpha(opacity:'+(changeAttr+speed)+')';
+						obj.style.opacity = (changeAttr+speed)/100;
+					}
+					else
+					{
+						obj.style[attr] = changeAttr+speed+"px";
+					}
+					
+				}
+			},30)
+		}
+	}
+	start();
+}	
+	</script>
+</body>
+</html>
