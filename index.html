@@ -61,12 +61,13 @@
 		<h1>日常作品</h1>
 	</div>
 
-<!-- 日常作品三列布局 -->
+<!-- 日常作品四列布局 -->
 	<div class="work-demo">
 		<div class="work-left">
 				<a href="indexVue.html">
 				<img src="image/vuejs.png" alt="" width="80" height="80" style="display:block">
-				Vue ToDoList</a>
+				购买清单
+				</a>
 		</div>
 
 		<div class="work-mid">
@@ -75,12 +76,17 @@
 			鼠标跟随</a>
 		</div>
 
+		<div class="work-mid-two">
+			<a href="movemouse.html">
+			<img src="image/vuejs.png" alt="" width="80" height="80" style="display:block">
+			鼠标跟随</a>
+		</div>		
+
 		<div class="work-right">
 			<a href="Carousel/Carousel.html">
 			<img src="image/vuejs.png" alt="" width="80" height="80" style="display:block">
 			轮播效果</a>
 		</div>
-
 	</div>
 </div>
 
@@ -119,8 +125,15 @@
 $(function()
 {
 
+	// 滚动条事件
+	$(window).scroll(function(){
+		$('.back-box,.qq').css("display","block");		
+	}) 	
+
+
 	// 返回顶点
-	var back = $('.back-box');
+var back = $('.back-box');
+
 	back.click(function(){
 		$('html,body').animate({scrollTop:0},'slow');
 		navLi.slideDown();
