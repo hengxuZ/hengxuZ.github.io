@@ -188,41 +188,43 @@ h1{
 	text-shadow:1px 2px #00bfff,2px 4px #aee2d9;
 }
 
-/*三列式*/
+/*四列式*/
 
 .work-demo{
-	width: 100%;
 	position: relative;
-	margin:100px auto;
+
 }
 
+
+.work-left,.work-mid,.work-mid-two,.work-right{
+	position: absolute;
+	top:20px;
+
+}
 .work-left{
+	left: 10%;
 
-	position: absolute;
-	
-	left:5%;
-
-
-	
-}
-.work-right{
-
-
-	position: absolute;
-	
-	right:5%;
 	
 }
 
 .work-mid{
-	
-	position: absolute;
-	
-	left: 47%;
+	left: 35%;
+
 	
 }
 
+.work-mid-two{
+	right:35%;
+}
 
+.work-right{
+	right:10%;
+}
+
+.work-demo a{
+	color:white;
+
+}
 /*第三页*/
 
 .threepage .center{
