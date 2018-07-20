@@ -220,7 +220,8 @@ a:hover{
 .photo{
 	
 	height: 13em;
-	background-color: white;
+	background: url(../image/logo.jpeg) no-repeat 0px -10px;
+	background-size:cover; 
 	border: 10px solid #aeead9;
 	border-radius: 50%;
 	-webkit-border-radius:50%;
@@ -260,7 +261,18 @@ h1{
 	position: relative;
 
 }
+.line{
+	margin-top: 50px;
 
+}
+
+.work h3,.work h5,.work h4{
+	background-color: #096254;
+	color:#00bfff;
+	padding: 2px 9px;
+	margin-bottom: 4px;
+	border-radius: 3px;
+}
 
 .work-left,.work-mid,.work-mid-two,.work-right{
 	position: absolute;
